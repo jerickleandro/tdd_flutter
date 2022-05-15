@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController controller = TextEditingController();
+
+  var res = "";
+
+  void ehPrimo(v) {
+    setState(() {
+      var div = 0;
+      for (var i = 1; i <= v; i++) {
+        if (v % i == 0) {
+          div++;
+        }
+      }
+      if (div == 2) {
+        res = "É primo";
+      } else {
+        res = "Não é primo";
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,19 +34,25 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Hello World'),
+          const Text('Hello World'),
+          TextField(
+            controller: controller,
+          ),
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.ac_unit,
                 key: Key('icon_tdd'),
               ),
               ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Click'),
-                  style: ElevatedButton.styleFrom(primary: Colors.black))
+                  onPressed: () {
+                    ehPrimo(int.parse(controller.text));
+                  },
+                  child: const Text('Click'),
+                  style: ElevatedButton.styleFrom(primary: Colors.black)),
             ],
-          )
+          ),
+          Text(res)
         ],
       ),
     );
