@@ -22,5 +22,4 @@ jobs:
        with:
          channel: 'beta'
      - run: flutter config --enable-windows-desktop
-     - run: flutter build windows
      - run: flutter test
