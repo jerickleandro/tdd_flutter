@@ -61,6 +61,6 @@ void main() {
     var button = find.text('Click');
     await tester.tap(button);
     await tester.pump();
-    expect(find.text('É primo'), findsOneWidget);
+    expect(find.text('Não é primo'), findsOneWidget);
   });
 }
