@@ -49,21 +49,18 @@ void main() {
     expect(find.byKey(Key('icon_tdd')), findsOneWidget);
   });
 
-  testWidgets('textfield found and clicked', (WidgetTester tester) async {
-    // ignore: prefer_const_constructors
+  testWidgets('textfield found', (WidgetTester tester) async {
     final testWidget = MaterialApp(
-      home: const HomePage(),
+      home: HomePage(),
     );
 
     await tester.pumpWidget(testWidget);
     await tester.pumpAndSettle();
 
-    await tester.pump();
-
-    await tester.enterText(find.byType(TextField), "3");
-    var button = find.text("Click");
+    await tester.enterText(find.byType(TextField), '6');
+    var button = find.text('Click');
     await tester.tap(button);
     await tester.pump();
-    expect(find.text('Não é primo'), findsOneWidget);
+    expect(find.text('É primo'), findsOneWidget);
   });
 }

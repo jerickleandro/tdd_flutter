@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+/**
+ * Etapas:
+ * trocar de stateless para stateful - OK
+ * inserir o texteditingcontroller
+ * inserir o textfield - OK
+ * implementar a função do número primo - OK
+ */
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePage();
 }
 
-class _HomePageState extends State<HomePage> {
-  final TextEditingController controller = TextEditingController();
+class _HomePage extends State<HomePage> {
+  final TextEditingController textCtrl = TextEditingController();
 
-  var res = "";
-
-  void ehPrimo(v) {
+  var resultado = "";
+  void ehPrimo(value) {
     setState(() {
-      var div = 0;
-      for (var i = 1; i <= v; i++) {
-        if (v % i == 0) {
-          div++;
+      var divisores = 0;
+      for (var i = 1; i <= value; i++) {
+        if (value % i == 0) {
+          divisores++;
         }
       }
-      if (div == 2) {
-        res = "É primo";
+      if (divisores == 2) {
+        resultado = "É primo";
       } else {
-        res = "Não é primo";
+        resultado = "Não é primo";
       }
     });
   }
@@ -36,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           const Text('Hello World'),
           TextField(
-            controller: controller,
+            controller: textCtrl,
           ),
           Row(
             children: [
@@ -46,13 +52,13 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    ehPrimo(int.parse(controller.text));
+                    ehPrimo(int.parse(textCtrl.text));
                   },
                   child: const Text('Click'),
                   style: ElevatedButton.styleFrom(primary: Colors.black)),
             ],
           ),
-          Text(res)
+          Text(resultado)
         ],
       ),
     );
