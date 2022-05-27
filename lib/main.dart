@@ -40,7 +40,7 @@ class _HomePage extends State<HomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Bem Vindo'),
+          const Text('Bem Vindo!'),
           TextField(
             controller: textCtrl,
           ),
